@@ -1955,3 +1955,29 @@ transform:rotate(0deg);
     background:rgba(255,255,255,.35);
     border-radius:10px;
 }
+
+/* =====================================================
+   MOBILE VIEWPORT FIX
+   Menyesuaikan halaman dengan viewport Chrome di HP
+===================================================== */
+
+html,
+body {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+.page {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100dvh;
+    max-width: 100vw;
+    min-width: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
