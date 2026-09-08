@@ -2010,29 +2010,70 @@ body {
 }
 
 /* =====================================================
-   CREDIT SCENE SCROLL
+   CREDIT SCENE - MOBILE SCROLL FIX
 ===================================================== */
 
 #credit {
-    overflow-y: auto;
-    overflow-x: hidden;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+
+    display: flex;
     align-items: flex-start;
     justify-content: center;
-    padding: 40px 0 120px;
+
+    min-height: 100dvh;
+    height: 100dvh;
+
+    padding: 70px 20px 140px;
     box-sizing: border-box;
+
+    -webkit-overflow-scrolling: touch;
 }
 
+/* Konten credit boleh lebih tinggi dari layar */
 #credit .credit-content {
-    flex-shrink: 0;
+    width: min(90%, 700px);
+    max-width: 700px;
+
+    min-height: max-content;
+    height: auto;
+
     margin: 0 auto;
+    padding: 30px 20px 100px;
+
+    box-sizing: border-box;
+    flex-shrink: 0;
 }
 
-/* Scrollbar Credits */
+/* Pastikan isi tidak dipotong */
+#credit .credit-content > * {
+    flex-shrink: 0;
+}
+
+/* Scrollbar Credit Scene */
 #credit::-webkit-scrollbar {
     width: 6px;
 }
 
+#credit::-webkit-scrollbar-track {
+    background: transparent;
+}
+
 #credit::-webkit-scrollbar-thumb {
-    background: rgba(255,255,255,.35);
+    background: rgba(255, 255, 255, 0.35);
     border-radius: 10px;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+
+    #credit {
+        padding-top: 60px;
+        padding-bottom: 150px;
+    }
+
+    #credit .credit-content {
+        width: 92%;
+        padding: 25px 15px 120px;
+    }
 }
