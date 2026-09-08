@@ -2077,3 +2077,79 @@ body {
         padding: 25px 15px 120px;
     }
 }
+
+/* =====================================================
+   FINAL CREDIT SCENE - FULL SCREEN + SCROLL
+===================================================== */
+
+#credit {
+    width: 100%;
+    height: 100%;
+    min-height: 100dvh;
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+
+    box-sizing: border-box;
+
+    padding: 70px 20px 160px;
+
+    background-size: cover !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Konten Credit Scene dibuat mengikuti tinggi isinya */
+#credit .credit-content {
+    width: min(92%, 700px);
+    max-width: 700px;
+
+    height: auto;
+    min-height: max-content;
+
+    flex-shrink: 0;
+
+    margin: 0 auto;
+
+    padding: 35px 25px 140px;
+
+    box-sizing: border-box;
+}
+
+/* Semua isi boleh memanjang ke bawah */
+#credit .credit-content > * {
+    flex-shrink: 0;
+}
+
+/* Scrollbar Credit Scene */
+#credit::-webkit-scrollbar {
+    width: 6px;
+}
+
+#credit::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+#credit::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,.4);
+    border-radius: 10px;
+}
+
+/* HP */
+@media (max-width: 768px) {
+
+    #credit {
+        padding: 60px 15px 170px;
+    }
+
+    #credit .credit-content {
+        width: 94%;
+        padding: 30px 18px 150px;
+    }
+}
