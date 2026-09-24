@@ -1639,6 +1639,7 @@ transform:rotate(0deg);
 
     font-size:2.4rem;
 
+  
     margin-bottom:25px;
 
 }
@@ -2010,146 +2011,1093 @@ body {
 }
 
 /* =====================================================
-   CREDIT SCENE - MOBILE SCROLL FIX
+   NEW CREDIT SCENE
+   TYPING + BINARY GAME + MOBILE SCROLL
 ===================================================== */
 
-#credit {
-    overflow-y: auto !important;
-    overflow-x: hidden !important;
+#credit.credit-page {
+
+    position: fixed;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100dvh;
 
     display: flex;
+
     align-items: flex-start;
     justify-content: center;
 
-    min-height: 100dvh;
-    height: 100dvh;
+    overflow-x: hidden;
+    overflow-y: auto;
 
-    padding: 70px 20px 140px;
     box-sizing: border-box;
+
+    padding: 70px 18px 140px;
+
+    background-image:
+        url("assets/backgrounds/credit.jpg");
+
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
 
     -webkit-overflow-scrolling: touch;
+
 }
 
-/* Konten credit boleh lebih tinggi dari layar */
+
+/* DARK OVERLAY */
+
+#credit .credit-overlay {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 0;
+
+    background:
+        linear-gradient(
+            rgba(0,0,0,.62),
+            rgba(0,0,0,.72)
+        );
+
+    pointer-events: none;
+
+}
+
+
+/* MAIN CONTENT */
+
 #credit .credit-content {
-    width: min(90%, 700px);
-    max-width: 700px;
+
+    position: relative;
+
+    z-index: 2;
+
+    width: min(760px, 94%);
+
+    max-width: 760px;
 
     min-height: max-content;
-    height: auto;
 
     margin: 0 auto;
-    padding: 30px 20px 100px;
+
+    padding: 30px 20px 120px;
 
     box-sizing: border-box;
-    flex-shrink: 0;
+
+    text-align: center;
+
+    color: white;
+
 }
 
-/* Pastikan isi tidak dipotong */
-#credit .credit-content > * {
-    flex-shrink: 0;
+
+/* =====================================================
+   CREDIT TYPING
+===================================================== */
+
+#creditTyping {
+
+    width: 100%;
+
 }
 
-/* Scrollbar Credit Scene */
-#credit::-webkit-scrollbar {
-    width: 6px;
+
+/* Heading */
+
+#creditTyping h1 {
+
+    color: #fff;
+
+    font-size: clamp(
+        1.8rem,
+        6vw,
+        2.7rem
+    );
+
+    line-height: 1.3;
+
+    margin: 0 0 35px;
+
 }
 
-#credit::-webkit-scrollbar-track {
-    background: transparent;
+
+/* Paragraph */
+
+#creditTyping p {
+
+    font-size: clamp(
+        1rem,
+        4vw,
+        1.25rem
+    );
+
+    line-height: 1.9;
+
+    margin: 0 auto 30px;
+
+    max-width: 650px;
+
 }
 
-#credit::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.35);
-    border-radius: 10px;
+
+/* Created */
+
+#creditTyping h3 {
+
+    color: #ffe1ed;
+
+    font-size: 1.35rem;
+
+    margin: 25px 0 12px;
+
 }
 
-/* Mobile */
-@media (max-width: 768px) {
 
-    #credit {
-        padding-top: 60px;
-        padding-bottom: 150px;
+/* Dinda */
+
+#creditTyping .special-name {
+
+    color: #ffd6e7;
+
+    font-size: clamp(
+        2rem,
+        7vw,
+        3rem
+    );
+
+    margin: 15px 0 30px;
+
+}
+
+
+/* DIVIDER */
+
+#credit .credit-divider {
+
+    width: 120px;
+
+    height: 2px;
+
+    margin: 32px auto;
+
+    background: #ffc7dc;
+
+    opacity: .85;
+
+}
+
+
+/* =====================================================
+   TYPING EFFECT
+===================================================== */
+
+#creditTyping.typing-active {
+
+    animation:
+        creditFadeIn
+        .6s ease
+        forwards;
+
+}
+
+
+@keyframes creditFadeIn {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(20px);
+
     }
 
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+/* =====================================================
+   BINARY GAME
+===================================================== */
+
+.binary-game {
+
+    display: none;
+
+    width: 100%;
+
+    margin-top: 60px;
+
+    padding-top: 45px;
+
+    border-top:
+        1px solid
+        rgba(255,255,255,.2);
+
+}
+
+
+.binary-game.show {
+
+    display: block;
+
+    animation:
+        binaryAppear
+        .8s ease
+        forwards;
+
+}
+
+
+@keyframes binaryAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(30px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+/* INTRO */
+
+.binary-small {
+
+    font-size: 1rem;
+
+    line-height: 1.8;
+
+    opacity: .8;
+
+    margin-bottom: 12px;
+
+}
+
+
+.binary-question {
+
+    font-family:
+        monospace;
+
+    font-size: 1.3rem;
+
+    margin-bottom: 30px;
+
+}
+
+
+/* =====================================================
+   BINARY CODE
+===================================================== */
+
+.binary-code {
+
+    width: min(
+        680px,
+        100%
+    );
+
+    margin: 30px auto 40px;
+
+    padding: 25px 15px;
+
+    box-sizing: border-box;
+
+    border:
+        1px solid
+        rgba(255,255,255,.15);
+
+    border-radius: 18px;
+
+    background:
+        rgba(0,0,0,.55);
+
+    box-shadow:
+        0 15px 45px
+        rgba(0,0,0,.3);
+
+}
+
+
+.binary-code span {
+
+    display: block;
+
+    color: #ff708e;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size: clamp(
+        .7rem,
+        2.8vw,
+        1rem
+    );
+
+    letter-spacing: 1px;
+
+    line-height: 2;
+
+    word-break: normal;
+
+}
+
+
+/* =====================================================
+   BUTTONS
+===================================================== */
+
+.binary-buttons {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 15px;
+
+    flex-wrap: wrap;
+
+}
+
+
+.binary-btn {
+
+    min-width: 130px;
+
+    padding: 14px 25px;
+
+    border: 1px solid
+        rgba(255,255,255,.25);
+
+    border-radius: 999px;
+
+    background:
+        rgba(255,255,255,.15);
+
+    color: white;
+
+    font-size: 1rem;
+
+    cursor: pointer;
+
+    transition:
+        .3s ease;
+
+}
+
+
+.binary-btn:hover {
+
+    background:
+        rgba(255,255,255,.28);
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+.binary-btn.secondary {
+
+    opacity: .8;
+
+}
+
+
+/* =====================================================
+   PANELS
+===================================================== */
+
+.binary-panel {
+
+    display: none;
+
+    margin-top: 35px;
+
+    padding: 28px 20px;
+
+    border-radius: 20px;
+
+    background:
+        rgba(0,0,0,.4);
+
+    border:
+        1px solid
+        rgba(255,255,255,.15);
+
+}
+
+
+.binary-panel.show {
+
+    display: block;
+
+    animation:
+        binaryAppear
+        .6s ease
+        forwards;
+
+}
+
+
+.binary-panel p {
+
+    line-height: 1.8;
+
+}
+
+
+.binary-panel h2 {
+
+    color: #ffd5e6;
+
+    font-size:
+        clamp(
+            1.5rem,
+            6vw,
+            2.2rem
+        );
+
+    margin: 20px 0;
+
+}
+
+
+/* =====================================================
+   INPUT
+===================================================== */
+
+.binary-input-wrap {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-top: 25px;
+
+}
+
+
+#binaryInput {
+
+    width: min(
+        420px,
+        100%
+    );
+
+    padding: 14px 18px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.25);
+
+    border-radius: 999px;
+
+    outline: none;
+
+    background:
+        rgba(255,255,255,.1);
+
+    color: white;
+
+    font-size: 1rem;
+
+    box-sizing: border-box;
+
+}
+
+
+#binaryInput::placeholder {
+
+    color:
+        rgba(255,255,255,.55);
+
+}
+
+
+.binary-submit {
+
+    padding: 14px 22px;
+
+    border: none;
+
+    border-radius: 999px;
+
+    background: #ffd3e4;
+
+    color: #734b5e;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+}
+
+
+/* RESPONSE */
+
+.binary-response {
+
+    min-height: 30px;
+
+    margin-top: 25px;
+
+    color: #ffd7e7;
+
+    font-size: 1.1rem;
+
+}
+
+
+/* =====================================================
+   FINAL BUTTON
+===================================================== */
+
+.begin-final-btn {
+
+    display: none;
+
+    margin: 35px auto 0;
+
+    padding: 15px 32px;
+
+    border: none;
+
+    border-radius: 999px;
+
+    background:
+        rgba(255,255,255,.9);
+
+    color: #80556a;
+
+    font-size: 1rem;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 10px 30px
+        rgba(0,0,0,.25);
+
+}
+
+
+.begin-final-btn.show {
+
+    display: block;
+
+    animation:
+        binaryAppear
+        .8s ease
+        forwards;
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 768px) {
+
+    #credit.credit-page {
+
+        padding:
+            65px
+            12px
+            130px;
+
+    }
+
+
     #credit .credit-content {
-        width: 92%;
-        padding: 25px 15px 120px;
+
+        width: 96%;
+
+        padding:
+            25px
+            10px
+            100px;
+
+    }
+
+
+    .binary-code {
+
+        padding:
+            22px
+            8px;
+
+        border-radius: 14px;
+
+    }
+
+
+    .binary-code span {
+
+        font-size:
+            .67rem;
+
+        letter-spacing:
+            .4px;
+
+        line-height:
+            2.1;
+
+    }
+
+
+    .binary-input-wrap {
+
+        flex-direction: column;
+
+    }
+
+
+    #binaryInput {
+
+        width: 100%;
+
+    }
+
+
+    .binary-submit {
+
+        width: 100%;
+
+    }
+
+}
+
+
+/* =====================================================
+   CREDIT SCROLLBAR
+===================================================== */
+
+#credit::-webkit-scrollbar {
+
+    width: 5px;
+
+}
+
+
+#credit::-webkit-scrollbar-track {
+
+    background: transparent;
+
+}
+
+
+#credit::-webkit-scrollbar-thumb {
+
+    background:
+        rgba(255,255,255,.3);
+
+    border-radius: 999px;
+
+}
+
+/* =====================================================
+   CREDIT SCENE — FIXED SCREEN
+===================================================== */
+
+#credit.credit-page {
+    position: fixed;
+    inset: 0;
+
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-sizing: border-box;
+}
+
+#credit .credit-content {
+    width: 100%;
+    max-width: 760px;
+
+    max-height: 100%;
+    overflow: hidden;
+
+    box-sizing: border-box;
+
+    text-align: center;
+}
+
+/* =====================================================
+   CREDIT SCENE — TYPING EFFECT
+===================================================== */
+
+#creditTyping {
+    opacity: 1;
+}
+
+#creditTyping .typing-line {
+    display: block;
+    min-height: 1.5em;
+}
+
+#creditTyping .typing-cursor::after {
+    content: "|";
+    display: inline-block;
+    margin-left: 2px;
+    animation: creditCursor .7s infinite;
+}
+
+@keyframes creditCursor {
+    0%, 45% {
+        opacity: 1;
+    }
+
+    46%, 100% {
+        opacity: 0;
     }
 }
 
 /* =====================================================
-   FINAL CREDIT SCENE - FULL SCREEN + SCROLL
+   CREATOR MESSAGE
 ===================================================== */
 
-#credit {
+#creatorMessage {
+    display: none;
+
     width: 100%;
-    height: 100%;
-    min-height: 100dvh;
-
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-
-    overflow-x: hidden !important;
-    overflow-y: auto !important;
+    margin-top: 60px;
+    padding: 20px 0 80px;
 
     box-sizing: border-box;
 
-    padding: 70px 20px 160px;
-
-    background-size: cover !important;
-    background-position: center center !important;
-    background-repeat: no-repeat !important;
-
-    -webkit-overflow-scrolling: touch;
+    opacity: 0;
+    transform: translateY(25px);
 }
 
-/* Konten Credit Scene dibuat mengikuti tinggi isinya */
-#credit .credit-content {
-    width: min(92%, 700px);
-    max-width: 700px;
 
-    height: auto;
-    min-height: max-content;
+/* Muncul setelah credit selesai */
 
-    flex-shrink: 0;
+#creatorMessage.show {
+    display: block;
+
+    animation:
+        creatorMessageAppear
+        .8s ease forwards;
+}
+
+
+@keyframes creatorMessageAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+/* Kotak pesan */
+
+.creator-message-inner {
+
+    width: min(620px, 94%);
 
     margin: 0 auto;
 
-    padding: 35px 25px 140px;
+    padding: 30px 22px 35px;
 
     box-sizing: border-box;
+
+    text-align: center;
+
+    border-radius: 24px;
+
+    background:
+        rgba(0, 0, 0, .38);
+
+    border:
+        1px solid
+        rgba(255, 255, 255, .18);
+
+    box-shadow:
+        0 15px 45px
+        rgba(0, 0, 0, .25);
+
+    backdrop-filter: blur(8px);
 }
 
-/* Semua isi boleh memanjang ke bawah */
-#credit .credit-content > * {
-    flex-shrink: 0;
+
+/* Judul */
+
+.creator-message-inner h2 {
+
+    margin: 0 0 18px;
+
+    color: #ffd8e7;
+
+    font-size:
+        clamp(
+            1.35rem,
+            5vw,
+            2rem
+        );
+
+    line-height: 1.4;
 }
 
-/* Scrollbar Credit Scene */
-#credit::-webkit-scrollbar {
-    width: 6px;
+
+/* Deskripsi */
+
+.creator-message-inner p {
+
+    margin: 0 auto 12px;
+
+    color: rgba(255,255,255,.9);
+
+    font-size: 1rem;
+
+    line-height: 1.7;
 }
 
-#credit::-webkit-scrollbar-track {
-    background: transparent;
+
+/* Catatan email */
+
+.creator-message-note {
+
+    font-size: .85rem !important;
+
+    opacity: .65;
+
+    margin-bottom: 25px !important;
 }
 
-#credit::-webkit-scrollbar-thumb {
-    background: rgba(255,255,255,.4);
-    border-radius: 10px;
+
+/* Input & textarea */
+
+#creatorName,
+#creatorMessageInput {
+
+    display: block;
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    margin: 12px 0;
+
+    padding: 14px 16px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.2);
+
+    border-radius: 16px;
+
+    outline: none;
+
+    background:
+        rgba(255,255,255,.09);
+
+    color: white;
+
+    font-family: inherit;
+
+    font-size: 1rem;
+
+    transition:
+        border-color .25s ease,
+        background .25s ease;
 }
 
-/* HP */
+
+#creatorMessageInput {
+
+    min-height: 130px;
+
+    resize: vertical;
+
+    line-height: 1.6;
+}
+
+
+/* Placeholder */
+
+#creatorName::placeholder,
+#creatorMessageInput::placeholder {
+
+    color:
+        rgba(255,255,255,.5);
+}
+
+
+/* Saat disentuh */
+
+#creatorName:focus,
+#creatorMessageInput:focus {
+
+    border-color:
+        rgba(255,210,230,.7);
+
+    background:
+        rgba(255,255,255,.13);
+}
+
+
+/* Tombol kirim */
+
+#creatorMessageSend {
+
+    width: 100%;
+
+    margin-top: 12px;
+
+    padding: 15px 20px;
+
+    border: none;
+
+    border-radius: 999px;
+
+    background: #ffd6e6;
+
+    color: #70495b;
+
+    font-size: 1rem;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        transform .25s ease,
+        opacity .25s ease;
+}
+
+
+#creatorMessageSend:active {
+
+    transform: scale(.97);
+
+}
+
+
+/* Status */
+
+.creator-message-status {
+
+    min-height: 25px;
+
+    margin-top: 18px !important;
+
+    color: #ffd8e7 !important;
+
+    font-size: .95rem !important;
+}
+
+
+/* Tombol kirim lagi */
+
+#creatorMessageAgain {
+
+    display: none;
+
+    margin: 15px auto 0;
+
+    padding: 11px 22px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.25);
+
+    border-radius: 999px;
+
+    background:
+        rgba(255,255,255,.1);
+
+    color: white;
+
+    font-size: .9rem;
+
+    cursor: pointer;
+}
+
+
+#creatorMessageAgain.show {
+
+    display: inline-block;
+
+}
+
+
+/* MOBILE */
+
 @media (max-width: 768px) {
 
-    #credit {
-        padding: 60px 15px 170px;
+    #creatorMessage {
+
+        margin-top: 45px;
+
+        padding-bottom: 60px;
+
     }
 
-    #credit .credit-content {
+    .creator-message-inner {
+
         width: 94%;
-        padding: 30px 18px 150px;
+
+        padding:
+            25px
+            16px
+            30px;
+
+        border-radius: 20px;
+
     }
+
+    #creatorName,
+    #creatorMessageInput {
+
+        font-size: 16px;
+
+    }
+
 }

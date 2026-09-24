@@ -629,3 +629,520 @@ if (restartBtn) {
     });
 
 }
+
+/* =====================================================
+   CREDIT SCENE — TYPING ENGINE
+===================================================== */
+
+function startCreditTyping() {
+
+    const credit = document.getElementById("creditTyping");
+
+    if (!credit) return;
+
+    const elements = credit.querySelectorAll(
+        "h1, h2, h3, p"
+    );
+
+    let lines = [];
+
+    elements.forEach(element => {
+
+        const text = element.innerText.trim();
+
+        if (!text) return;
+
+        lines.push({
+            element: element,
+            text: text
+        });
+
+        element.innerHTML = "";
+        element.classList.add("typing-line");
+
+    });
+
+    let lineIndex = 0;
+    let charIndex = 0;
+
+    function typeNextCharacter() {
+
+        if (lineIndex >= lines.length) {
+
+    credit.classList.remove("typing-active");
+
+    setTimeout(() => {
+
+        const creatorMessage =
+            document.getElementById("creatorMessage");
+
+        if (creatorMessage) {
+            creatorMessage.classList.add("show");
+
+            creatorMessage.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+        }
+
+    }, 800);
+
+    return;
+}
+
+        const current = lines[lineIndex];
+
+        if (charIndex < current.text.length) {
+
+            current.element.innerHTML +=
+                current.text.charAt(charIndex);
+
+            charIndex++;
+
+            setTimeout(
+                typeNextCharacter,
+                35
+            );
+
+        } else {
+
+            charIndex = 0;
+            lineIndex++;
+
+            setTimeout(
+                typeNextCharacter,
+                500
+            );
+        }
+    }
+
+    typeNextCharacter();
+}
+
+/* =====================================================
+   CREDIT SCENE — AUTO START TYPING
+===================================================== */
+
+let creditTypingStarted = false;
+
+function checkCreditScene() {
+
+    const creditScene =
+        document.getElementById("credit");
+
+    if (!creditScene) return;
+
+    const isVisible =
+        window.getComputedStyle(creditScene).display !== "none";
+
+    if (
+        isVisible &&
+        !creditTypingStarted
+    ) {
+
+        creditTypingStarted = true;
+
+        startCreditTyping();
+    }
+}
+
+/* =====================================================
+   CREATOR MESSAGE — FORM CONTROL
+===================================================== */
+
+/* document.addEventListener("DOMContentLoaded", () => {
+
+    const nameInput =
+        document.getElementById("creatorName");
+
+    const messageInput =
+        document.getElementById("creatorMessageInput");
+
+    const sendButton =
+        document.getElementById("creatorMessageSend");
+
+    const status =
+        document.getElementById("creatorMessageStatus");
+
+    const againButton =
+        document.getElementById("creatorMessageAgain");
+
+
+    if (
+        !nameInput ||
+        !messageInput ||
+        !sendButton ||
+        !status ||
+        !againButton
+    ) {
+        return;
+    }
+
+
+    /* =========================================
+       KIRIM PESAN
+    ========================================= */
+
+    /*sendButton.addEventListener("click", () => {
+
+        const name =
+            nameInput.value.trim();
+
+        const message =
+            messageInput.value.trim();
+
+
+        /* Pesan wajib diisi */
+
+        /*if (!message) {
+
+            status.textContent =
+                "Tulis pesannya dulu ya 🌸";
+
+            messageInput.focus();
+
+            return;
+        }
+
+
+        /*
+         * Untuk sementara belum benar-benar
+         * mengirim email.
+         */
+
+        /*status.textContent =
+            "Pesan sudah siap dikirim 🌸";
+
+
+        sendButton.style.display =
+            "none";
+
+        againButton.classList.add("show");
+
+    });
+
+
+    /* =========================================
+       KIRIM PESAN LAGI
+    ========================================= */
+
+    /*againButton.addEventListener("click", () => {
+
+        nameInput.value = "";
+
+        messageInput.value = ""; */
+/* =====================================================
+   CREATOR MESSAGE — WEB3FORMS
+===================================================== */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const form =
+        document.getElementById("creatorMessageForm");
+
+    const nameInput =
+        document.getElementById("creatorName");
+
+    const messageInput =
+        document.getElementById("creatorMessageInput");
+
+    const sendButton =
+        document.getElementById("creatorMessageSend");
+
+    const status =
+        document.getElementById("creatorMessageStatus");
+
+    const againButton =
+        document.getElementById("creatorMessageAgain");
+
+
+    /* Kalau form belum ada, hentikan */
+
+    if (
+        !form ||
+        !nameInput ||
+        !messageInput ||
+        !sendButton ||
+        !status ||
+        !againButton
+    ) {
+        return;
+    }
+
+
+    /* =========================================
+       KIRIM PESAN
+    ========================================= */
+
+    form.addEventListener("submit", async (event) => {
+
+        event.preventDefault();
+
+
+        const message =
+            messageInput.value.trim();
+
+
+        /* Pesan wajib diisi */
+
+        if (!message) {
+
+            status.textContent =
+                "Tulis pesannya dulu ya 🌸";
+
+            messageInput.focus();
+
+            return;
+        }
+
+
+        const originalText =
+            sendButton.textContent;
+
+
+        sendButton.textContent =
+            "Mengirim...";
+
+        sendButton.disabled =
+            true;
+
+        status.textContent =
+            "";
+
+
+        try {
+
+            const formData =
+                new FormData(form);
+
+
+            const response =
+                await fetch(
+                    "https://api.web3forms.com/submit",
+                    {
+                        method: "POST",
+                        body: formData
+                    }
+                );
+
+
+            const data =
+                await response.json();
+
+
+            /* =================================
+               BERHASIL
+            ================================= */
+
+            if (response.ok && data.success) {
+
+                status.textContent =
+                    "🌸 Pesan berhasil dikirim. Terima kasih sudah meninggalkan pesan 🌸";
+
+
+                sendButton.style.display =
+                    "none";
+
+
+                againButton.classList.add(
+/* =====================================================
+   CREATOR MESSAGE — WEB3FORMS
+===================================================== */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const form =
+        document.getElementById("creatorMessageForm");
+
+    const nameInput =
+        document.getElementById("creatorName");
+
+    const messageInput =
+        document.getElementById("creatorMessageInput");
+
+    const sendButton =
+        document.getElementById("creatorMessageSend");
+
+    const status =
+        document.getElementById("creatorMessageStatus");
+
+    const againButton =
+        document.getElementById("creatorMessageAgain");
+
+
+    /* Kalau form belum ada, hentikan */
+
+    if (
+        !form ||
+        !nameInput ||
+        !messageInput ||
+        !sendButton ||
+        !status ||
+        !againButton
+    ) {
+        return;
+    }
+
+
+    /* =========================================
+       KIRIM PESAN
+    ========================================= */
+
+    form.addEventListener("submit", async (event) => {
+
+        event.preventDefault();
+
+
+        const message =
+            messageInput.value.trim();
+
+
+        /* Pesan wajib diisi */
+
+        if (!message) {
+
+            status.textContent =
+                "Tulis pesannya dulu ya 🌸";
+
+            messageInput.focus();
+
+            return;
+        }
+
+
+        const originalText =
+            sendButton.textContent;
+
+
+        sendButton.textContent =
+            "Mengirim...";
+
+        sendButton.disabled =
+            true;
+
+        status.textContent =
+            "";
+
+
+        try {
+
+            const formData =
+                new FormData(form);
+
+
+            const response =
+                await fetch(
+                    "https://api.web3forms.com/submit",
+                    {
+                        method: "POST",
+                        body: formData
+                    }
+                );
+
+
+            const data =
+                await response.json();
+
+
+            /* =================================
+               BERHASIL
+            ================================= */
+
+            if (response.ok && data.success) {
+
+                status.textContent =
+                    "🌸 Pesan berhasil dikirim. Terima kasih sudah meninggalkan pesan 🌸";
+
+
+                sendButton.style.display =
+                    "none";
+
+
+                againButton.classList.add(
+                    "show"
+                );
+
+
+            }
+
+            /* =================================
+               GAGAL
+            ================================= */
+
+            else {
+
+                status.textContent =
+                    "Pesannya belum berhasil dikirim. Coba lagi ya.";
+
+
+                console.error(
+                    "Web3Forms:",
+                    data
+                );
+
+            }
+
+
+        }
+
+        /* =====================================
+           ERROR KONEKSI
+        ===================================== */
+
+        catch (error) {
+
+            status.textContent =
+                "Koneksi bermasalah. Coba kirim lagi ya.";
+
+
+            console.error(
+                "Web3Forms error:",
+                error
+            );
+
+        }
+
+
+        /* =====================================
+           KEMBALIKAN TOMBOL
+        ===================================== */
+
+        finally {
+
+            sendButton.textContent =
+                originalText;
+
+            sendButton.disabled =
+                false;
+
+        }
+
+    });
+
+
+    /* =========================================
+       KIRIM PESAN LAGI
+    ========================================= */
+
+    againButton.addEventListener(
+        "click",
+        () => {
+
+            form.reset();
+
+            status.textContent =
+                "";
+
+            sendButton.style.display =
+                "block";
+
+            againButton.classList.remove(
+                "show"
+            );
+
+            messageInput.focus();
+
+        }
+    );
+
+});
